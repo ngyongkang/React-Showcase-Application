@@ -1,8 +1,23 @@
-# React + Vite
+# React-Showcase-Application
+A react application to showcase some small projects that will be complied into one application and be separated by components.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Project Setup
+Run the following commands with the npm software installed.
+```
+npm create vite
+```
+Vite is a conveient project setup that allows a preset to be downloaded. It offers other quite a few options besides "React".
+However, for this project setup I will be using the React preset with the Javascript setup.
 
-Currently, two official plugins are available:
+# Project Execution
+Run the following npm commands to execute the different modes for the preset project.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Build Project Only:
+```
+npm run build
+```
+
+Development Environment:
+```
+npm run dev
+```
