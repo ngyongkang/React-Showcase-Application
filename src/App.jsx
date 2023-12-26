@@ -46,8 +46,10 @@ function App() {
     <button onClick={() => onClick(1)}>Fancy Counter</button>
   
     </div>
-    { applications[0] ? <Calculator /> : null }
-    { applications[1] ? <FancyCounter /> : null }
+    <div className="module-container">
+      { applications[0] ? <Calculator /> : null }
+      { applications[1] ? <FancyCounter /> : null }
+    </div>
     <p>
           Edit <code>src/App.jsx</code> and save to test HMR
     </p>

@@ -11,7 +11,7 @@ export default function FancyCounter() {
   const [counter, setCounter] = React.useState(0);
 
   return (
-    <div>
+    <div className="card">
       <Title/>
       <Counter counter={counter}/>
       <Reset>
