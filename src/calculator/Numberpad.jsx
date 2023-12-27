@@ -1,14 +1,10 @@
-import { useState } from 'react'
-
-
-
 function Numberpad(props) {
      
     const {string, setString} = props;
     const numbers = [1,2,3,4,5,6,7,8,9,'-','+','x','/']
   return (
     <>
-      <div className="card numberpad-container">
+      <div className="flex flex-wrap padding">
         {
             numbers.map((number,index) => {
             return (

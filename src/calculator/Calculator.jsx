@@ -40,7 +40,7 @@ function Calculator() {
 
   return (
     <>
-      <div className="card">
+      <div className="content-center">
         <button>
           {string}
         </button>
