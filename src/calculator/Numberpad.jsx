@@ -4,12 +4,12 @@ function Numberpad(props) {
     const numbers = [1,2,3,4,5,6,7,8,9,'-','+','x','/']
   return (
     <>
-      <div className="flex flex-wrap padding">
+      <div className="flex flex-wrap border border-slate-200 w-fit">
         {
             numbers.map((number,index) => {
             return (
-            <div key={index} className="numberpad-item">
-                <button onClick={() => string == "" ? setString(`${number}`) : setString(`${string} ${number}`)}>
+            <div key={index} className="flex items-center">
+                <button className="w-12 text-center border border-black" onClick={() => string == "" ? setString(`${number}`) : setString(`${string} ${number}`)}>
                     {number}
                 </button>
             </div>
@@ -17,6 +17,7 @@ function Numberpad(props) {
             })
         }
       </div>
+      
     </>
   )
 }

@@ -5,16 +5,19 @@ import './App.css'
 import Calculator from './calculator/Calculator'
 import FancyCounter from './fancyCounter/FancyCounter'
 import ListGroup from './gameWebsite/ListGroup'
+import WordApp from './word-analytics/WordApp'
 
 function App() {
 
-  const [applications, setApplication] = useState([])
+  const [applications, setApplication] = useState([]);
 
+  let string = <Calculator/>
   useEffect(() => {
-    if(applications < 3) {
-    for(let i=0;i<2;i++)
-      applications.push(false);
-    }
+    let newArray = [];
+    for(let i=0;i<4;i++)
+      newArray.push(false);
+
+    setApplication(newArray);
   }, []);
 
   const onClick = (index) => {
@@ -42,14 +45,18 @@ function App() {
     {/* End of Stock template */}
 
     <div className="card">
-    <button onClick={() => onClick(0)}>Calculator</button>
-    <button onClick={() => onClick(1)}>Fancy Counter</button>
-    <button onClick={() => onClick(2)}>Hello World</button>
+    {applications.map((value, index) => {
+      return (
+      <button key={index} onClick={() => onClick(index)}>Calculator</button>
+      )
+    })}
+    
     </div>
     <div className="module-container">
-      { applications[0] ? <Calculator /> : null }
+      { applications[0] ? string : null }
       { applications[1] ? <FancyCounter /> : null }
       { applications[2] ? <ListGroup className="text-3xl font-bold underline" /> : null }
+      { applications[3] ? <WordApp /> : null }
     </div>
     <p>
           Edit <code>src/App.jsx</code> and save to test HMR
