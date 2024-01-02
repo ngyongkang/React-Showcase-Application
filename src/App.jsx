@@ -11,11 +11,33 @@ function App() {
 
   const [applications, setApplication] = useState([]);
 
-  let string = <Calculator/>
   useEffect(() => {
-    let newArray = [];
-    for(let i=0;i<4;i++)
-      newArray.push(false);
+    let newArray = [
+      {
+        name : "Calculator",
+        status : false,
+        component: <Calculator/>
+
+      },
+      {
+        name : "Fancy Counter",
+        status : false,
+        component: <FancyCounter/>
+
+      },
+      {
+        name : "Game Website",
+        status : false,
+        component: <ListGroup/>
+
+      },
+      {
+        name : "Word Analytics",
+        status : false,
+        component: <WordApp/>
+
+      },
+    ];
 
     setApplication(newArray);
   }, []);
@@ -24,9 +46,9 @@ function App() {
     let newArray = [...applications];
     for(let i=0;i<newArray.length;i++) {
       if(i != index)
-        newArray[i] = false;
+        newArray[i].status = false;
     }
-    newArray[index] = !newArray[index]
+    newArray[index].status = !newArray[index].status
     setApplication(newArray);
   }
   
@@ -34,10 +56,10 @@ function App() {
     <>
     {/* Stock template */}
     <div>
-      <a href="https://vitejs.dev" target="_blank">
+      <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
         <img src={viteLogo} className="logo" alt="Vite logo" />
       </a>
-      <a href="https://react.dev" target="_blank">
+      <a href="https://react.dev" target="_blank" rel="noreferrer">
         <img src={reactLogo} className="logo react" alt="React logo" />
       </a>
     </div>
@@ -47,23 +69,26 @@ function App() {
     <div className="card">
     {applications.map((value, index) => {
       return (
-      <button key={index} onClick={() => onClick(index)}>Calculator</button>
+      <button key={index} onClick={() => onClick(index)}>{value.name}</button>
       )
     })}
-    
     </div>
     <div className="module-container">
-      { applications[0] ? string : null }
-      { applications[1] ? <FancyCounter /> : null }
-      { applications[2] ? <ListGroup className="text-3xl font-bold underline" /> : null }
-      { applications[3] ? <WordApp /> : null }
+      {applications.map((value) => {
+        return (
+          value.status ? value.component : null
+        )
+      })}
     </div>
+
+    {/* Stock template */}
     <p>
           Edit <code>src/App.jsx</code> and save to test HMR
     </p>
     <p className="read-the-docs">
         Click on the Vite and React logos to learn more
     </p>
+    {/* End of Stock template */}
     </>
   )
 }
