@@ -40,11 +40,8 @@ function Calculator() {
 
   return (
     <>
-      <div className="content-center">
-        <button>
-          {string}
-        </button>
-        
+      <div>
+      {string}
       </div>
       <Numberpad string={string} setString={setString}/>
       <div className="card">

@@ -23,8 +23,12 @@ export default function Main() {
   
 
   return (
-    <div>
-      <textarea placeholder='Enter your text' value={text} onChange={checkInput}/>
+    <div className='flex mt-5 mb-5'>
+      <textarea 
+      placeholder='Enter your text' 
+      value={text} onChange={checkInput}
+      className="w-[70vw] h-[30vh] bg-slate-100 rounded-[20px] mr-5"
+      />
       <Stats stats={stats}/>
     </div>
   )

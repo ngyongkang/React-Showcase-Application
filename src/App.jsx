@@ -69,7 +69,13 @@ function App() {
     <div className="card">
     {applications.map((value, index) => {
       return (
-      <button key={index} onClick={() => onClick(index)}>{value.name}</button>
+      <button 
+        key={index} 
+        onClick={() => onClick(index)}
+        className='mr-1 bg-slate-100'
+      >
+        {value.name}
+      </button>
       )
     })}
     </div>
