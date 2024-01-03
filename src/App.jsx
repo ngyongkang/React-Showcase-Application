@@ -6,6 +6,7 @@ import Calculator from './calculator/Calculator'
 import FancyCounter from './fancyCounter/FancyCounter'
 import ListGroup from './gameWebsite/ListGroup'
 import WordApp from './word-analytics/WordApp'
+import TrekBag from './trekBag/TrekBag'
 
 function App() {
 
@@ -35,6 +36,12 @@ function App() {
         name : "Word Analytics",
         status : false,
         component: <WordApp/>
+
+      },
+      {
+        name : "Trek Bag",
+        status : false,
+        component: <TrekBag/>
 
       },
     ];
@@ -80,9 +87,11 @@ function App() {
     })}
     </div>
     <div className="module-container">
-      {applications.map((value) => {
+      {applications.map((value, index) => {
         return (
-          value.status ? value.component : null
+          <div key={index}>
+          {value.status ? value.component : null}
+          </div>
         )
       })}
     </div>
