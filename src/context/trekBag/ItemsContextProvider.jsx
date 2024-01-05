@@ -6,26 +6,24 @@ export default function ItemsContextProvider({children}) {
   const [items, setItems] = React.useState([]);
   
   React.useEffect(() => {
-    const defaultItems = [
-     {id: new Date().getTime(),name: 'item 1', state: false},
-     {id: new Date().getTime(),name: 'item 2', state: false},
-     {id: new Date().getTime(),name: 'item 3', state: false},
-     {id: new Date().getTime(),name: 'item 4', state: false},
-    ]
+    const defaultItems = [];
+    for (let i=0;i<4;i++)
+      defaultItems.push({id: "id" + Math.random().toString(16).slice(2),name: 'item ' + (i+1), state: false});
 
     setItems(defaultItems);
  }, []) 
 
-  function handleAddItem(object) {
+  function handleAddItem(value) {
+    if(!value) return
+
     let temp = [...items];
-    temp.push(object);
+    temp.push({id: "id" + Math.random().toString(16).slice(2),name: value, state: false});
     setItems(temp);
   }
    
   function handleDeleteItem(id) {
-    let temp = items.map((item) => {
-        if(item.id === id) return {};
-        return item;
+    let temp = items.filter((item) => {
+        return item.id !== id;
     });
 
     setItems(temp);
@@ -33,7 +31,7 @@ export default function ItemsContextProvider({children}) {
 
   function handleToggleItem(id) {
     let temp = items.map((item) => {
-        if(item.id === id) return {...item, packed: !packed};
+        if(item.id === id) return {...item, state: !item.state};
         return item;
     });
 
@@ -46,10 +44,25 @@ export default function ItemsContextProvider({children}) {
 
   function handleCompleteAllItems() {
     let temp = items.map((item) => {
-        return {...item, packed: true};
+        return {...item, state: true};
     });
     setItems(temp);
+  }
 
+  function getCompleteItems() {
+    let temp = items.filter((item) => {
+        if(item.state) return item
+    });
+
+    return temp.length
+  }
+
+  function loadDefault() {
+    const defaultItems = [];
+    for (let i=0;i<4;i++)
+      defaultItems.push({id: "id" + Math.random().toString(16).slice(2),name: 'item ' + (i+1), state: false});
+
+    setItems(defaultItems);
   }
 
   return (
@@ -60,7 +73,9 @@ export default function ItemsContextProvider({children}) {
             handleDeleteItem,
             handleToggleItem,
             handleRemoveAllItems,
-            handleCompleteAllItems
+            handleCompleteAllItems,
+            getCompleteItems,
+            loadDefault
         }}
     >
     {children}        

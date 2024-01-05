@@ -2,25 +2,31 @@ import React from 'react'
 import { ItemContext } from '../hooks/trekBag/ItemContext'
 
 export default function SideBar() {
-  
-  const { handleAddItem } = ItemContext();
+  const inputRef = React.useRef();  
+  const { handleAddItem, handleRemoveAllItems, handleCompleteAllItems, loadDefault} = ItemContext();
+
+  function submitFunction (e) {
+    e.preventDefault()
+    handleAddItem(inputRef.current.value);
+    inputRef.current.value = "";
+  }
 
   return (
         <form 
         className='mr-5 ml-5 flex flex-col'
-        onSubmit={(e) => {e.preventDefault()}}
+        onSubmit={submitFunction}
         >
             <label>
                 Add an item
-                <input className='border border-black'></input>
+                <input ref={inputRef} className='border border-black'></input>
             </label>
-            <button onClick={(e) => (handleAddItem({name: 'poker', packed: false}))}>Add to list</button>
+            <button type="submit">Add to list</button>
 
             <section className='flex flex-col'>
-            <button>Add to list</button>
-            <button>Add to list</button>
-            <button>Add to list</button>
-            <button>Add to list</button>
+            <button type="button" onClick={handleRemoveAllItems}>Remove All Items</button>
+            <button type="button" onClick={handleCompleteAllItems}>Complete All Items</button>
+            <button type="button" onClick={handleRemoveAllItems}>Add to list</button>
+            <button type="button" onClick={loadDefault}>Load Default</button>
             </section>
         </form>
 
